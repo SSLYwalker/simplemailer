@@ -1,0 +1,157 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="css/base.css">
+	<link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css">
+	<script src="scripts/jquery.js"></script>
+	<script src="scripts/jquery.datetimepicker.js"></script>
+        <meta charset="UTF-8">
+        <title>Egyszerű levélküldő</title>
+    </head>
+    <body>
+        <form id="formId">
+    <div>
+        <label for="customerName">Ügyfél Neve</label>
+        <input id="customerNameId" size="50"/>
+    </div>
+    
+    <div>
+        <label for="product">Termék</label>
+        <select id="productId" >
+          <option value="szerviz7">Szerviz 7</option>
+          <option value="moduprou">Modupro ULTIMATE</option>
+          <option value="qservice">Qservice Professional</option>
+        </select>
+    </div>
+    
+    <div>
+    <label for="activity">Tevékenység</label>
+        <select id="activityId" >
+          <option value="repair">Javítás</option>
+          <option value="support">Segítségnyújtás</option>
+        </select>
+    </div>
+    <div>
+        <label for="status">Státusz</label>
+        <select id="statusId" >
+          <option value="start">Kezdés</option>
+          <option value="end">Befejezés</option>
+        </select>
+        <input id="datepicker" />
+    </div>
+    <div>
+        <label for="lang">Nyelv</label>
+        <select id="langId" >
+          <option value="hun">HUN</option>
+          <option value="cze">CZE</option>
+          <option value="sky">SKY</option>
+          <option value="rom">ROM</option>
+        </select>    
+    </div>
+    <div>
+        <cimzettek>Email címek</cimzettek>
+        <div name="recipients" id="recipients">
+            <recipient type="" address="">
+                <select id="recipientTypeId" class="reciType">
+                    <option value="to">Cimzett</option>
+                    <option value="cc">Másolat</option>
+                    <option value="bcc">Rejtett másolat</option>
+                </select>
+                <input  class="mailInputfield" type="text" maxlength="80" size="30">
+            </recipient>
+        <a onclick="addTos()" href="#">+</a>
+        </div>
+    </div>
+    
+<!--    
+    <label for="cc">Másolatot kap:</label>
+ 
+ 
+  <input  type="text" name="cc" maxlength="50" size="30">
+ 
+
+
+ 
+  <label for="bcc">Rejtett másolatot kap: </label>
+ 
+ 
+  <input  type="text" name="bcc" maxlength="50" size="30">
+ 
+-->
+<!--
+ 
+  <label for="comments">Üzenet *</label>
+ 
+ 
+  <textarea  name="comments" maxlength="1000" cols="25" rows="6"></textarea>
+ 
+-->
+
+<div> 
+    <input type="button" id="subb" type="submit"/>
+</div>
+</form>
+
+        <?php
+        // put your code here
+        ?>
+    </body>
+		<link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css">
+		<script src="scripts/jquery.js"></script>
+		<script src="scripts/jquery.datetimepicker.js"></script>
+		<script>
+			$('#datepicker').datetimepicker({
+				format:'Y.m.d H:i',
+				lang:'hu',
+				startDate: '2014.01.01',
+				mask:true, // '9999/19/39 29:59' - digit is the maximum possible for a cell
+				step: 5,
+				dayOfWeekStart: 1
+			});
+                        
+                        
+                function addTos(){
+                    $("#recipients").append("<recipient type='' address=''><select id='recipientTypeId' class='reciType'><option value='to'>Cimzett</option><option value='cc'>Másolat</option><option value='bcc'>Rejtett másolat</option></select><input  class='mailInputfield' type='text' maxlength='80' size='30'></recipient><a onclick='addTos()' href='#'>+</a>");
+                }
+                
+                $( "#subb" ).click(function() {
+                        var name = $("#customerNameId").val();
+                        var product = $("#productId").val();
+                        var activity = $("#activityId").val();
+                        var status = $("#statusId").val();
+                        var date = $("#datepicker").val();
+                        var lang = $("#langId").val();
+                        var recipientsArray = {};
+
+                        recipientsArray['0'] = {"type" : 'tipus', "address" : 'a@b.hu'};
+                        $( "recipient" ).each(function (index) {
+                            console.log($( this ).attr("type"));
+                        });
+                        
+
+                        if(name ==''){
+                        alert("Insertion Failed Some Fields are Blank....!!");
+                        }
+                        else{
+                        // Returns successful data submission message when the entered information is stored in database.
+                        $.post("mailsender.php",{ name1: name, recipients: recipientsArray},
+                         function(data) {
+                         alert(data);
+                         $('#formId')[0].reset(); //To reset form fields
+                         });
+
+                         }
+                    });
+                
+                $(".reciType").change(function( event ){
+                    $( this ).parent().attr("type", $( this ).val());
+                });
+                $(".mailInputfield").change(function( event ){
+                    $( this ).parent().attr("address", $( this ).val());
+                });
+		</script>	
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Ez vajon befolyásol itt valamit</title>
+</head>
+<style>
+
+*,*:after,*:before {
+    margin: 0;
+    padding: 0;
+    -ms-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+body, html {
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 1em;
+    line-height: 1em;
+    background-color: #e6ebec;
+}
+
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,p,blockquote,th,td,iframe {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    direction: ltr;
+    outline: none;
+    border: 0;
+}
+
+a img,
+a,a:hover {
+    color: #fff;
+    outline: none;
+    border: 0 none;
+    text-decoration: none;
+}
+
+*:focus {
+    outline: 0;
+}
+
+a:visited {
+    color: #262626;
+    outline: none;
+    border: 0 none;
+    text-decoration: none;
+}
+
+img {
+    display: block;
+    margin: 50px auto;
+    width: 20%;
+    max-width: 20% !important;
+    max-height: auto;
+}
+
+#wrapper {
+    position: relative;
+    display: block;
+    width: 100%;
+}    
+
+.holder {
+    position: absolute;
+    display: block;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}    
+
+p {
+    margin: 20px 0;
+    font-weight: 400;
+    font-size: 1em;
+    text-align: center;
+}
+
+</style>
+
+<body>
+<div id="wrapper">
+    <div class="holder">
+        <h3 align="center">Tisztelt Ügyfelünk!</h3>
+        <p>
+            Értesítjük, hogy a [activity]t [date] időpontban [status]! <br>
+
+            Üdvözlettel
+            [company]
+        </p>
+    </div>
+</div>
+</body>
+</html>
