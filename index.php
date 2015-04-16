@@ -1,5 +1,6 @@
 <html>
     <head>
+        <!-- Acevaranikusz vagyok.  -->
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/humanity/jquery-ui.css">	
         <link rel="stylesheet" href="css/jquery.datetimepicker.css">
         <link rel="stylesheet" href="css/jquery-te-1.4.0.css">
