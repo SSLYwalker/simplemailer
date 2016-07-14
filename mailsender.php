@@ -69,7 +69,7 @@ switch ($array[1][0]->products) {
         break;
     case 'm':
             $product = 'Modupro';
-            $company = '3 Sz-s Kft.';
+            $company = 'Indas Kft.';
             $sender = 'info@indas.hu';
             $mail->setFrom($sender, $company);
             $mail->addReplyTo($sender, $company);
@@ -120,17 +120,17 @@ $mail->SMTPDebug = 0;
 //Ask for HTML-friendly debug output
 $mail->Debugoutput = 'html';
 //Set the hostname of the mail server
-$mail->Host = 'smtp.gmail.com';
+$mail->Host = 'mail.intra';
 //Set the SMTP port number - 587 for authenticated TLS, a.k.a. RFC4409 SMTP submission
-$mail->Port = 587;
+$mail->Port = 25;
 //Set the encryption system to use - ssl (deprecated) or tls
-$mail->SMTPSecure = 'tls';
+//$mail->SMTPSecure = '';
 //Whether to use SMTP authentication
-$mail->SMTPAuth = true;
+$mail->SMTPAuth = false;
 //Username to use for SMTP authentication - use full email address for gmail
-$mail->Username = "opregelek@gmail.com";
+//$mail->Username = "";
 //Password to use for SMTP authentication
-$mail->Password = "Bubuka1*";
+//$mail->Password = "";
 /*//Set who the message is to be sent from
 Korábban már be lett állítva $mail->setFrom("a@b.hu, ceg");
 //Set an alternative reply-to address
@@ -177,6 +177,8 @@ if (!$mail->send()) {
 } else {
     echo "Üzenet elküldve!";
 }
+
+
 ?>
 </body>
 </html>

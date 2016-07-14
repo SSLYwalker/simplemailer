@@ -7,7 +7,56 @@ and open the template in the editor.
     Created on : 2013.11.14., 13:51:29
     Author     : ozep
 */
+#content {
+	padding: 30px 30px 0px 30px;
+}
+label {
+	margin: 5px 5px 5px 5px;
+	display: block;
+}
 
 td {
     vertical-align: top;
+}
+
+select {
+	text-align: center;
+	width: 100%;
+}
+
+.customername, #content_status_dtpicker {
+	width: 100%;
+	text-align: center;
+}
+
+.recipienttype{
+	width: 150px;
+	margin-right: 15px;
+}
+
+.emailinput {
+	width: 400px;
+	text-align: center;
+}
+
+.recipientitem {
+	margin-bottom: 15px;
+	margin: auto;
+	width: 75%;
+}
+
+#content_customernamediv, #content_langdiv, #content_productdiv, #content_activitydiv, #content_statusdiv {
+	margin: auto;
+	width: 50%;
+}
+
+#newrecipient {
+	width: 100%;
+	margin-top: 30px;
+	margin-bottom: 15px;
+}
+
+#content_submitbutton {
+	width: 100%;
+	background: url(images/sm1.png) no-repeat;
 }
