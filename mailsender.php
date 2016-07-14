@@ -12,7 +12,7 @@ $array = json_decode(filter_input(INPUT_POST, 'jsonize'));
 date_default_timezone_set('Europe/Budapest');
 
 //require '../PHPMailerAutoload.php';
-require './PHPMailerAutoload.php';
+require '/phpmailer/PHPMailerAutoload.php';
 
 //Create a new PHPMailer instance
 $mail = new PHPMailer();
