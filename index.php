@@ -1,11 +1,10 @@
 <html>
     <head>
-        <!-- Acevaranikusz vagyok.  -->
-		<link rel="icon" href="images/sm_ico.png">
+        <link rel="icon" href="images/sm_ico.png">
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/humanity/jquery-ui.css">	
         <link rel="stylesheet" href="css/jquery.datetimepicker.css">
         <link rel="stylesheet" href="css/jquery-te-1.4.0.css">
-		<link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="css/base.css">
         <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
         <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
         <script src="scripts/jquery.datetimepicker.js"></script>
