@@ -13,100 +13,129 @@
         <meta charset="UTF-8">
         <script type="text/javascript">
                 /** Text resource-ok*/
-				var g_lang = 'eng';
-				var mui;
+		/**
+                 * @brief Az oldal megjelnítési nyelvénk a kódja
+                 * 
+                 * @type String
+                 */
+                var g_lang = 'eng';
+                
+                
+        	var mui;
+                /**
+                 * @brief Ez a nyevi objektum tartalmazza a címkék nyelvi 
+                 * megfelelőit
+                 * 
+                 * @type Object
+                 */                
                 var g_string_resource_obj={
 					"hun" : {
-								"titlestr" : "Egyszerű levélküldő",
-								"submitcaption" : "Küldés",
-								"customername" : "Ügyfél neve",
-								"toaddress" : "Címzett",
-								"carboncopy" : "Másolat",
-								"blindcarboncopy" : "Rejtett Másolat",
-								"newrecipient" : "Új címzett",
-								"torles" : "Törlés",
-								"product" : "Termék",
-								"languages": "Nyelvek",
-								"hun": "Magyar",
-								"rom": "Román",
-								"cze": "Cseh",
-								"sky": "Szlovák",
-								"sz7" : "Szerviz7",
-								"mu" : "Modupro ULTIMATE",
-								"m" : "Modupro",
-								"qs" : "Qservice",
-								"start" : "Kezdés",
-								"stop" : "Befejezés",
-								"status": "Státusz",
-								"repair" : "Javítás",
-								"support" : "Segítségnyújtás",
-								"installation" : "Telepítés",
-								"activity" : "Tevékenység",
-								"recipient_delete_dialog" : "Címzett törlése",
-								"yes" : "Igen",
-								"no" : "Nem"
-							},
+                                                    "titleStr" : "Egyszerű levélküldő",
+                                                    "submitCaption" : "Küldés",
+                                                    "customerName" : "Ügyfél neve",
+                                                    "toAddress" : "Címzett",
+                                                    "carbonCopy" : "Másolat",
+                                                    "blindCarbonCopy" : "Rejtett Másolat",
+                                                    "newRecipient" : "Új címzett",
+                                                    "delete" : "Törlés",
+                                                    "product" : "Termék",
+                                                    "msgLanguages": "Üzenet nyelve",
+                                                    "hun": "Magyar",
+                                                    "rom": "Román",
+                                                    "cze": "Cseh",
+                                                    "sky": "Szlovák",
+                                                    "sz7" : "Szerviz7",
+                                                    "mu" : "Modupro ULTIMATE",
+                                                    "m" : "Modupro",
+                                                    "qs" : "Qservice",
+                                                    "start" : "Kezdés",
+                                                    "stop" : "Befejezés",
+                                                    "status": "Státusz",
+                                                    "repair" : "Javítás",
+                                                    "support" : "Segítségnyújtás",
+                                                    "installation" : "Telepítés",
+                                                    "activity" : "Tevékenység",
+                                                    "recipient_delete_dialog" : "Címzett törlése",
+                                                    "yes" : "Igen",
+                                                    "no" : "Nem"
+                                                },
 					"eng" : {
-								"titlestr" : "Simple mailer",
-								"submitcaption" : "Send",
-								"customername" : "Customer name",
-								"toaddress" : "Címzett",
-								"carboncopy" : "Másolat",
-								"blindcarboncopy" : "Rejtett Másolat",
-								"newrecipient" : "Új címzett",
-								"torles" : "Törlés",
-								"product" : "Termék",
-								"languages": "Nyelvek",
-								"hun": "Magyar",
-								"rom": "Román",
-								"cze": "Cseh",
-								"sky": "Szlovák",
-								"sz7" : "Szerviz7",
-								"mu" : "Modupro ULTIMATE",
-								"m" : "Modupro",
-								"qs" : "Qservice",
-								"start" : "Kezdés",
-								"stop" : "Befejezés",
-								"status": "Státusz",
-								"repair" : "Javítás",
-								"support" : "Segítségnyújtás",
-								"installation" : "Telepítés",
-								"activity" : "Tevékenység",
-								"recipient_delete_dialog" : "Címzett törlése",
-								"yes" : "Igen",
-								"no" : "Nem"
-							}
+                                                    "titleStr" : "Simple mailer",
+                                                    "submitCaption" : "Send",
+                                                    "customerName" : "Customer name",
+                                                    "toAddress" : "To",
+                                                    "carbonCopy" : "CC",
+                                                    "blindCarbonCopy" : "BCC",
+                                                    "newRecipient" : "New Recipient",
+                                                    "delete" : "Delete",
+                                                    "product" : "Product",
+                                                    "msgLanguages": "Message Language",
+                                                    "hun": "Hungarian",
+                                                    "rom": "Romanian",
+                                                    "cze": "Czech",
+                                                    "sky": "Slovak",
+                                                    "sz7" : "Szerviz7",
+                                                    "mu" : "Modupro ULTIMATE",
+                                                    "m" : "Modupro",
+                                                    "qs" : "Qservice",
+                                                    "start" : "Beginning",
+                                                    "stop" : "Completion",
+                                                    "status": "Status",
+                                                    "repair" : "Repair",
+                                                    "support" : "Support",
+                                                    "installation" : "Installation",
+                                                    "activity" : "Activity",
+                                                    "recipient_delete_dialog" : "Recipient delete",
+                                                    "yes" : "Yes",
+                                                    "no" : "No"
+                                                }
                 };
                 
-				var submitarray = [];
+                /**
+                 * @brief Az adatok ebben a tömmben kerülnek átadásra a feldolgozónak
+                 * 
+                 * @type Array
+                 */
+                var submitarray = [];
                 
-				var showResult = function(event) {
-				  console.log(event);
-				  console.log(event.target.value.length);
-				  if (event.target.value.length==0) {
-					//$(event.target.parent.)
-					//document.getElementById("livesearch").innerHTML="";
-					//document.getElementById("livesearch").style.border="0px";
-					return;
-				  }
-				  /*if (window.XMLHttpRequest) {
-					// code for IE7+, Firefox, Chrome, Opera, Safari
-					xmlhttp=new XMLHttpRequest();
-				  } else {  // code for IE6, IE5
-					xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-				  }
-				  xmlhttp.onreadystatechange=function() {
-					if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-					  document.getElementById("livesearch").innerHTML=xmlhttp.responseText;
-					  document.getElementById("livesearch").style.border="1px solid #A5ACB2";
-					}
-				  }
-				  xmlhttp.open("GET","livesearch.php?q="+str,true);
-				  xmlhttp.send();*/
-				}
+                /**
+                 * @brief Email input változáa esetén, az a fv ajaxos hívással 
+                 * megjeleíti az az alternatívákat
+                 * 
+                 * @param {type} event
+                 * @returns {undefined}
+                 */
+                var showResult = function(event) {
+                  console.log(event);
+                  console.log(event.target.value.length);
+                  if (event.target.value.length===0) {
+                        //$(event.target.parent.)
+                        //document.getElementById("livesearch").innerHTML="";
+                        //document.getElementById("livesearch").style.border="0px";
+                        return;
+                  }
+                  /*if (window.XMLHttpRequest) {
+                        // code for IE7+, Firefox, Chrome, Opera, Safari
+                        xmlhttp=new XMLHttpRequest();
+                  } else {  // code for IE6, IE5
+                        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+                  }
+                  xmlhttp.onreadystatechange=function() {
+                        if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+                          document.getElementById("livesearch").innerHTML=xmlhttp.responseText;
+                          document.getElementById("livesearch").style.border="1px solid #A5ACB2";
+                        }
+                  }
+                  xmlhttp.open("GET","livesearch.php?q="+str,true);
+                  xmlhttp.send();*/
+                }
 				
 				
-                /**Egyedi azonosító generátor*/
+                /**
+                 * @brief Egyedi azonosító generátor
+                 * 
+                 * @type Function
+                 */
                 var guid = (function() {
                         function s4() {
                                 return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
@@ -117,8 +146,14 @@
                         };
                 })();
 
-                /*************************************************************
-                * 	Recipient holder osztály definició
+                
+               /**************************************************************
+                * @brief Recipient holder osztály definició
+                * 
+                * @param {type} contenthtmltag
+                * @param {type} string_resource_obj
+                * @param {type} parent
+                * @returns {recipientholder}
                 */
                 function recipientholder(
                         contenthtmltag, 
@@ -128,28 +163,41 @@
                 {
                         this.contenthtmltag = contenthtmltag;
                         this.str_res_obj = string_resource_obj;
-                        this.items=new Array();
+                        /**
+                         * @brief A cymzetteket tároló tömb id, típus, email cím
+                         */
+                        this.recipient_arr=new Array();
                         this.parent = parent;
                         this.lastrecipienttype = 'to';
                 }
-                
-                /**
-                *  @brief új címzett elemet ad a tárolótömbhöz
-                *  
-                *  @param type [in] Az email cím típusa.
-                *  @param address [in] Az email cím.
+
+               /**
+                * Címett adati tárolja le egy tömbben
+                * 
+                * @param {type} typep  Címzett típusa
+                * @param {type} addressp [in] Címzett email címe
+                * 
+                * @returns {String} A címzett egyedi azonosítója a tömbben
                 */
-                recipientholder.prototype.additem=function(type, address){
+                recipientholder.prototype.additem=function(typep, addressp){
                         var id=guid();
-                        this.items.push({
+
+                        this.recipient_arr.push({
                                 "id" : id,
-                                "type" : type,
-                                "address" : address
+                                "type" : typep,
+                                "address" : addressp
                         });
                         return id;
                 };
                 
-                /*uuid alapján visszaadja az elem tárolás pozívióját*/
+                /**
+                 * uuid alapján visszaadja az elem tárolás pozívióját
+                 * 
+                 * @param array [in] Tároló tömb
+                 * @param uuid [in] Egyedi azonosító
+                 * 
+                 * @returns A keresett elem indexével.
+                 */
                 recipientholder.prototype.getindex=function(array, uuid){
                         for(var i=0; i<array.length; i++){
                             var index = array[i]['id'].indexOf(uuid);
@@ -162,12 +210,15 @@
                 /**
                 *  @brief uuid alapján egy címzett elemet eltávolít a tárolótömbből
                 *  
+                *  @see additem();
+                *  
                 *  @param array [in] A tárolótömb.
                 *  @param uuid [in] Az elem egyedi azonosítója.
                 */
                 recipientholder.prototype.removeitem=function(array, uuid){
                     var index = this.getindex(array, uuid);
                     array.splice(index,1);
+                    this.g
                 };
 
 				/**
@@ -182,8 +233,8 @@
                     var index = this.getindex(array, uuid);
                     array[index][type] = value;
                 };
-				
-				/**
+                
+		/**
                 *  @brief Validáló fv.
                 */
                 recipientholder.prototype.validate = function() {
@@ -200,10 +251,10 @@
                 *  @brief Beállítja mi volt az utolsó címzettípus
                 */
                 recipientholder.prototype.setlastrecipienttype = function() {
-                    for(var i=0; i<this.items.length; i++)
+                    for(var i=0; i<this.recipient_arr.length; i++)
                     {
-                        if(i === this.items.length-1){
-                            this.lastrecipienttype = this.items[i]['type'];
+                        if(i === this.recipient_arr.length-1){
+                            this.lastrecipienttype = this.recipient_arr[i]['type'];
                         }
                     }
                 };
@@ -216,9 +267,9 @@
                 recipientholder.prototype.islastitem = function(uuid) {
                     var retval = false;
                     
-                    var array = this.items;
+                    var array = this.recipient_arr;
                     var index = this.getindex(array, uuid);
-                    if(index === this.items.length-1){
+                    if(index === this.recipient_arr.length-1){
                         retval = true;
                     }
                     return retval;
@@ -227,7 +278,7 @@
 				/**
                 *  @brief uj cimzett hozzáadása
                 */
-                recipientholder.prototype.newrecipient = function(){
+                recipientholder.prototype.newRecipient = function(){
                     var id = this.additem(this.lastrecipienttype,"");
                     this.show();
                     //$("div").find("[data-id='" + id + "'] input").focus();
@@ -240,7 +291,7 @@
                 recipientholder.prototype.getdialogsstr = function(){
                     var cont = '';
                     
-                    cont+='<div id="'+this.contenthtmltag+'_recipient_delete_dialog" title="'+this.str_res_obj['recipient_delete_dialog']+'">';
+                    cont+='<div id="'+this.contenthtmltag+'_recipient_delete_dialog" title="'+this.str_res_obj[g_lang]['recipient_delete_dialog']+'">';
                     cont+='<p>Valóban törlni szeretné a címzettet?</p>';
                     cont+='</div>';
                     
@@ -250,13 +301,13 @@
                 recipientholder.prototype.show=function(){
                         var cont='';
                         cont+='<div id="'+this.contenthtmltag+'_recipientholderdiv" class="recipientholderdiv">';
-                        cont+='<button type="button" id="newrecipient" href="#">'+this.str_res_obj['newrecipient']+'</button>';
+                        cont+='<button type="button" id="newRecipient" href="#">'+this.str_res_obj[g_lang]['newRecipient']+'</button>';
                         cont+=this.getdialogsstr();
                         cont+='</div>';
                         
                          $('#'+this.contenthtmltag).html(cont);
                         // jquery kontrolok inicializálása
-                        for(var i=0; i<this.items.length; i++)
+                        for(var i=0; i<this.recipient_arr.length; i++)
                         {
                                 if(i===0){
                                     editable = true;
@@ -265,8 +316,8 @@
                                     editable = true;
                                     deletable = true;
                                 }
-                                var item=this.items[i];
-                                $('#'+this.contenthtmltag+'_recipientholderdiv').append(this.getitemstr(item['id'],editable, deletable));
+                                var item=this.recipient_arr[i];
+                                $('#'+this.contenthtmltag+'_recipientholderdiv').append(this.getrecipient_arrtr(item['id'],editable, deletable));
                                 $("div").find("[data-id='" + item['id'] + "'] select").val(item['type']);
                                 $("div").find("[data-id='" + item['id'] + "'] input").val(item['address']);
                                 this.setlastrecipienttype();
@@ -276,8 +327,8 @@
                         /*jQuery doesn't redefine the this pointer, but that's how JavaScript functions work in general. Store a reference to the this pointer under a different name, and use that.*/
                         var thispoi = this;
                         /*Új címzett hozzáadása*/
-                        $("#newrecipient").click(function(){
-                            thispoi.newrecipient();
+                        $("#newRecipient").click(function(){
+                            thispoi.newRecipient();
                         });
                         
                         
@@ -286,11 +337,11 @@
 						* Ha BACKSPACE-t nyomtunk és üres az input - prevent default máskülönben és delete dialog vagy livesearch
 						*/
                         $(".emailinput").on('keypress', function(event){
-                            /*email input ertekkiaras az items tombbe*/
+                            /*email input ertekkiaras az recipient_arr tombbe*/
                             var type = 'address';
                             var uuid = $(this).parent().data("id");
                             var value = $(this).val();
-                            thispoi.setproperty(thispoi.items, type, uuid, value);
+                            thispoi.setproperty(thispoi.recipient_arr, type, uuid, value);
                             /*ENTER nyomása és nem üres input esetén új címzett*/
                             var inputvalue = $(this).val();
                             var uuid = $(this).parent().data("id");
@@ -308,7 +359,7 @@
 							}
 							
                             if(event.which === 13 && inputvalue !== '' && lastitem === true){
-                                thispoi.newrecipient();
+                                thispoi.newRecipient();
                             } else {
 								showResult(event);
 							}
@@ -328,12 +379,12 @@
                             thispoi.validate();
                         });
                         
-                        /*select onchange ertekkiaras az items tombbe*/
+                        /*select onchange ertekkiaras az recipient_arr tombbe*/
                         $(".recipienttype").change(function(){
                             var type = 'type';
                             var uuid = $(this).parent().data("id");
                             var value = $(this).val();
-                            thispoi.setproperty(thispoi.items, type, uuid, value);
+                            thispoi.setproperty(thispoi.recipient_arr, type, uuid, value);
                             thispoi.setlastrecipienttype();
                         });
 
@@ -380,7 +431,7 @@
                                         click: function() {
                                                     var target = $(".markedfordelete");
                                                     var uuid = target.data("id");
-                                                    thispoi.removeitem(thispoi.items, uuid);
+                                                    thispoi.removeitem(thispoi.recipient_arr, uuid);
                                                     thispoi.setlastrecipienttype();
                                                     target.remove();
                                                     $(this).dialog("close");
@@ -409,7 +460,7 @@
                         /*ESEMÉNYKEZELÉSVÉGE*/
                         
                         $('.emailinput:last').focus();
-                        $('#newrecipient').button();
+                        $('#newRecipient').button();
                         $('.deleterecipient').button({
                             icons: {primary: 'ui-icon-trash'}
                         });
@@ -417,9 +468,9 @@
 
                 recipientholder.prototype.getitembyid=function(id){
                         var retitem=null;
-                        for(var i=0; i<this.items.length; i++)
+                        for(var i=0; i<this.recipient_arr.length; i++)
                         {
-                                var item=this.items[i];
+                                var item=this.recipient_arr[i];
                                 if(item['id'] === id)
                                 {
                                         retitem=item;
@@ -429,7 +480,7 @@
                         return retitem;
                 };
 
-                recipientholder.prototype.getitemstr = function(id,editablep,deletablep)
+                recipientholder.prototype.getrecipient_arrtr = function(id,editablep,deletablep)
                 {
                         var cont='';
                         var editable='';
@@ -442,13 +493,13 @@
                         {
                                 cont+='<div class="recipientitem" data-id="'+id+'" data-deletable="'+deletable+'">';
                                 cont+='<select class="recipienttype dovalidate '+editable+' ui-widget ui-widget-input ui-corner-all">';
-                                cont+='<option value="to">'+this.str_res_obj['toaddress']+'</option>';
-                                cont+='<option value="cc">'+this.str_res_obj['carboncopy']+'</option>';
-                                cont+='<option value="bcc">'+this.str_res_obj['blindcarboncopy']+'</option>';
+                                cont+='<option value="to">'+this.str_res_obj[g_lang]['toAddress']+'</option>';
+                                cont+='<option value="cc">'+this.str_res_obj[g_lang]['carbonCopy']+'</option>';
+                                cont+='<option value="bcc">'+this.str_res_obj[g_lang]['blindCarbonCopy']+'</option>';
                                 cont+='</select>';
                                 cont+='<input type="email" class="emailinput dovalidate ui-widget ui-widget-input ui-corner-all"/>';
                                 if(deletablep === true){
-                                    cont+='<button class="deleterecipient" type="button" href="#">'+this.str_res_obj['torles']+'</button>';
+                                    cont+='<button class="deleterecipient" type="button" href="#">'+this.str_res_obj[g_lang]['delete']+'</button>';
                                 }
                                 cont+='<div id="'+id+'emailinput_info">';
                                 cont+='teszt';
@@ -471,8 +522,8 @@
                 {
                         this.contenthtmltag = contenthtmltag;
                         this.str_res_obj = string_resource_obj;
-                        this.items = new Array({
-                            "customername" : 'üres',
+                        this.recipient_arr = new Array({
+                            "customerName" : 'üres',
                             "lang" : 'hun',
                             "products" : 'sz7',
                             "activity" : 'repair',
@@ -489,26 +540,26 @@
                         this.currenttime='';
                 }
 				
-				/**
+		/**
                 *  @brief Cation szövegek kinyerése a string resource objektumból
                 *  
                 *  @param lang [in] Nyelv.
                 *  @param mit [in] Caption.
-				*
-				*  @return string
+		*
+		*  @return string
                 */
-				maileruserinterface.prototype.getCaption = function(lang, mit){
-					var retval = 'probbbbababababa';
-					retval = this.str_res_obj[lang][mit];
-					return retval;
-				}
+		maileruserinterface.prototype.getCaption = function(lang, mit){
+			var retval = 'Caption Str';
+			retval = this.str_res_obj[lang][mit];
+			return retval;
+		};
                 
                 maileruserinterface.prototype.validate = function() {
                     alert('maileruserinterface validálás');
                     
                     /*Name validate*/
-                    var customername = $('#'+this.parent.contenthtmltag+'_customername').val();
-                    if(customername === ''){
+                    var customerName = $('#'+this.parent.contenthtmltag+'_customerName').val();
+                    if(customerName === ''){
                         alert('üres ügyfélnév');
                     }
                 };
@@ -523,44 +574,44 @@
                         
                         cont=thispoi.getformstr();
                          $('#'+thispoi.contenthtmltag).html(cont);
-                        thispoi.settitle(thispoi.getCaption(g_lang, 'titlestr'));
+                        thispoi.settitle(thispoi.getCaption(g_lang, 'titleStr'));
                         // jquery ui-s kontrolok inicializálása
                         thispoi.initjquerycontrols();
                         thispoi.recipholder.show();
                         
-                        $('#'+thispoi.contenthtmltag+'_customername').on("input", function(){
-                            thispoi.items[0]["customername"] = $(this).val();
+                        $('#'+thispoi.contenthtmltag+'_customerName').on("input", function(){
+                            thispoi.recipient_arr[0]["customerName"] = $(this).val();
                         });
                         
                         $('#'+thispoi.contenthtmltag+'_lang').on("input", function(){
-                            thispoi.items[0]["lang"] = $(this).val();
+                            thispoi.recipient_arr[0]["lang"] = $(this).val();
                             $(".jqte_editor").load('./templates/'+$(this).val()+'_template');
-                            thispoi.items[0]["message"] = $(".jqte_editor").html();
+                            thispoi.recipient_arr[0]["message"] = $(".jqte_editor").html();
                         });
                         
                         $('#'+thispoi.contenthtmltag+'_products').on("input", function(){
-                            thispoi.items[0]["products"] = $(this).val();
+                            thispoi.recipient_arr[0]["products"] = $(this).val();
                         });
                         
                         $('#'+thispoi.contenthtmltag+'_activity').on("input", function(){
-                            thispoi.items[0]["activity"] = $(this).val();
+                            thispoi.recipient_arr[0]["activity"] = $(this).val();
                         });
                         
                         $('#'+thispoi.contenthtmltag+'_status').on("input", function(){
-                            thispoi.items[0]["status"] = $(this).val();
+                            thispoi.recipient_arr[0]["status"] = $(this).val();
                         });
                         
                         $('#'+thispoi.contenthtmltag+'_status_dtpicker').on("change", function(){
-                            thispoi.items[0]["datetime"] = $(this).val();
+                            thispoi.recipient_arr[0]["datetime"] = $(this).val();
                         });
                         
                         $(".jqte_editor").on("input", function(){
-                            thispoi.items[0]["message"] = $(this).html();
+                            thispoi.recipient_arr[0]["message"] = $(this).html();
                         });
                         
                          $('#'+thispoi.contenthtmltag+'_submitbutton').on("click", function() {
-                                submitarray.push(rhpoi["items"]);
-                                submitarray.push(thispoi["items"]);
+                                submitarray.push(rhpoi["recipient_arr"]);
+                                submitarray.push(thispoi["recipient_arr"]);
                                 var myJson = JSON.stringify(submitarray);
                                 $("#"+thispoi.contenthtmltag+"_hidden").val(myJson);
                                 $("#"+thispoi.contenthtmltag+'_form').submit();
@@ -609,7 +660,7 @@
                         $(".editor").jqte();
                         $(".jqte_editor").load('./templates/hun_template', function( response, status, xhr ) {
                             if ( status !== "error" ) {
-                             thispoi.items[0]["message"] = $(".jqte_editor").html();
+                             thispoi.recipient_arr[0]["message"] = $(".jqte_editor").html();
                             }
                         });
                         //$('#'+recipientholder.contenthtmltag+'_recipientholderdiv div:first button:first').focus();
@@ -632,7 +683,7 @@
                         var cont='';
 
                         cont+='<form id="'+this.contenthtmltag+'_form" method="POST" action="./mailsender.php" class="ui-widget-content ui-corner-all">';
-                        cont+=this.getcustomernamedivstr();
+                        cont+=this.getcustomerNamedivstr();
                         cont+=this.getlangdivstr();
                         cont+=this.getproductsdivstr();
                         cont+=this.getactivitydivstr();
@@ -640,7 +691,7 @@
                         cont+='<div id="'+this.contenthtmltag+'_recipientholder">';
                         cont+='</div>';
                         cont+=this.geteditordivstr();
-                        cont+=this.getbuttonsstr('button', this.str_res_obj['submitcaption']);		
+                        cont+=this.getbuttonsstr('button', this.str_res_obj[g_lang]['submitCaption']);		
                         cont+='</form>';				
 
                         return cont;
@@ -657,12 +708,12 @@
                         return cont;
                 };
 
-                maileruserinterface.prototype.getcustomernamedivstr = function (){
+                maileruserinterface.prototype.getcustomerNamedivstr = function (){
                         var cont='';
 
-                        cont+='<div id="'+this.contenthtmltag+'_customernamediv">';
-                        cont+='<label class="ui-widget" for="'+this.contenthtmltag+'_customername">'+this.getCaption(g_lang, 'customername')+'</label>';
-                        cont+='<input id="'+this.contenthtmltag+'_customername" name="'+this.contenthtmltag+'_customernamep" class="customername dovalidate ui-widget ui-widget-input ui-corner-all"/>';
+                        cont+='<div id="'+this.contenthtmltag+'_customerNamediv">';
+                        cont+='<label class="ui-widget" for="'+this.contenthtmltag+'_customerName">'+this.getCaption(g_lang, 'customerName')+'</label>';
+                        cont+='<input id="'+this.contenthtmltag+'_customerName" name="'+this.contenthtmltag+'_customerNamep" class="customerName dovalidate ui-widget ui-widget-input ui-corner-all"/>';
                         cont+='</div>';
                         return cont;
                 };
@@ -671,12 +722,12 @@
                         var cont='';
 
                         cont+='<div id="'+this.contenthtmltag+'_productdiv">';
-                        cont+='<label class="ui-widget" for="'+this.contenthtmltag+'_products">'+this.str_res_obj['product']+'</label>';
+                        cont+='<label class="ui-widget" for="'+this.contenthtmltag+'_products">'+this.str_res_obj[g_lang]['product']+'</label>';
                         cont+='<select id="'+this.contenthtmltag+'_products" class="product ui-widget ui-widget-input ui-corner-all">';
-                        cont+='<option value="sz7">'+this.str_res_obj['sz7']+'</option>';
-                        cont+='<option value="mu">'+this.str_res_obj['mu']+'</option>';
-                        cont+='<option value="m">'+this.str_res_obj['m']+'</option>';
-                        cont+='<option value="qs">'+this.str_res_obj['qs']+'</option>';
+                        cont+='<option value="sz7">'+this.str_res_obj[g_lang]['sz7']+'</option>';
+                        cont+='<option value="mu">'+this.str_res_obj[g_lang]['mu']+'</option>';
+                        cont+='<option value="m">'+this.str_res_obj[g_lang]['m']+'</option>';
+                        cont+='<option value="qs">'+this.str_res_obj[g_lang]['qs']+'</option>';
                         cont+='</select>';
                         cont+='</div>';
                         return cont;
@@ -686,26 +737,30 @@
                         var cont='';
 
                         cont+='<div id="'+this.contenthtmltag+'_langdiv">';
-                        cont+='<label class="ui-widget" for="'+this.contenthtmltag+'_languages">'+this.str_res_obj['languages']+'</label>';
+                        cont+='<label class="ui-widget" for="'+this.contenthtmltag+'_msgLanguages">'+this.str_res_obj[g_lang]['msgLanguages']+'</label>';
                         cont+='<select id="'+this.contenthtmltag+'_lang" class="product ui-widget ui-widget-input ui-corner-all">';
-                        cont+='<option value="hun">'+this.str_res_obj['hun']+'</option>';
-                        cont+='<option value="rom">'+this.str_res_obj['rom']+'</option>';
-                        cont+='<option value="cze">'+this.str_res_obj['cze']+'</option>';
-                        cont+='<option value="sky">'+this.str_res_obj['sky']+'</option>';
+                        cont+='<option value="hun">'+this.str_res_obj[g_lang]['hun']+'</option>';
+                        cont+='<option value="rom">'+this.str_res_obj[g_lang]['rom']+'</option>';
+                        cont+='<option value="cze">'+this.str_res_obj[g_lang]['cze']+'</option>';
+                        cont+='<option value="sky">'+this.str_res_obj[g_lang]['sky']+'</option>';
                         cont+='</select>';
                         cont+='</div>';
                         return cont;
                 };
-
+                /**
+                 * @bref info a fvrol
+                 * 
+                 * @returns {String}
+                 */
                 maileruserinterface.prototype.getactivitydivstr = function (){
                         var cont='';
 
                         cont+='<div id="'+this.contenthtmltag+'_activitydiv">';
-                        cont+='<label class="ui-widget" for="'+this.contenthtmltag+'_activity">'+this.str_res_obj['activity']+'</label>';
+                        cont+='<label class="ui-widget" for="'+this.contenthtmltag+'_activity">'+this.str_res_obj[g_lang]['activity']+'</label>';
                         cont+='<select id="'+this.contenthtmltag+'_activity" class="activitytype ui-widget ui-widget-input ui-corner-all">';
-                        cont+='<option value="repair">'+this.str_res_obj['repair']+'</option>';
-                        cont+='<option value="support">'+this.str_res_obj['support']+'</option>';
-                        cont+='<option value="installation">'+this.str_res_obj['installation']+'</option>';
+                        cont+='<option value="repair">'+this.str_res_obj[g_lang]['repair']+'</option>';
+                        cont+='<option value="support">'+this.str_res_obj[g_lang]['support']+'</option>';
+                        cont+='<option value="installation">'+this.str_res_obj[g_lang]['installation']+'</option>';
                         cont+='</select>';
                         cont+='</div>';
                         return cont;
@@ -715,10 +770,10 @@
                         var cont='';
 
                         cont+='<div id="'+this.contenthtmltag+'_statusdiv">';
-                        cont+='<label class="ui-widget" for="'+this.contenthtmltag+'_status">'+this.str_res_obj['status']+'</label>';
+                        cont+='<label class="ui-widget" for="'+this.contenthtmltag+'_status">'+this.str_res_obj[g_lang]['status']+'</label>';
                         cont+='<select id="'+this.contenthtmltag+'_status" class="statustype ui-widget ui-widget-input ui-corner-all">';
-                        cont+='<option value="start">'+this.str_res_obj['start']+'</option>';
-                        cont+='<option value="stop">'+this.str_res_obj['stop']+'</option>';
+                        cont+='<option value="start">'+this.str_res_obj[g_lang]['start']+'</option>';
+                        cont+='<option value="stop">'+this.str_res_obj[g_lang]['stop']+'</option>';
                         cont+='</select>';
                         cont+='<input id="'+this.contenthtmltag+'_status_dtpicker" class="dtpicker dovalidate ui-widget ui-widget-input ui-corner-all"/>';
                         cont+='</div>';
