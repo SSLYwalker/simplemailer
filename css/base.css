@@ -58,5 +58,5 @@ select {
 
 #content_submitbutton {
 	width: 100%;
-	background: url(images/sm1.png) no-repeat;
+	background: url(/simplemailer/images/sm1.png) no-repeat;
 }

@@ -1,9 +1,5 @@
 <?php
-//get the q parameter from URL
-$q=$_GET["q"];
-$response = "ures";
-
-/*$row = 1;
+$row = 1;
 if (($handle = fopen("test.csv", "r")) !== FALSE) {
     while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
         $num = count($data);
@@ -14,7 +10,11 @@ if (($handle = fopen("test.csv", "r")) !== FALSE) {
         }
     }
     fclose($handle);
-}*/
+}
+
 //output the response
-echo $response;
+//$response = "ures";
+//echo $response;
+
+echo ('{"valasz" : "hurrá"}');
 ?> 

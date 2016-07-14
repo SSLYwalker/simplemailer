@@ -90,45 +90,15 @@
                                                 }
                 };
                 
+                
+                
+               
                 /**
                  * @brief Az adatok ebben a tömmben kerülnek átadásra a feldolgozónak
                  * 
                  * @type Array
                  */
                 var submitarray = [];
-                
-                /**
-                 * @brief Email input változáa esetén, az a fv ajaxos hívással 
-                 * megjeleíti az az alternatívákat
-                 * 
-                 * @param {type} event
-                 * @returns {undefined}
-                 */
-                var showResult = function(event) {
-                  console.log(event);
-                  console.log(event.target.value.length);
-                  if (event.target.value.length===0) {
-                        //$(event.target.parent.)
-                        //document.getElementById("livesearch").innerHTML="";
-                        //document.getElementById("livesearch").style.border="0px";
-                        return;
-                  }
-                  /*if (window.XMLHttpRequest) {
-                        // code for IE7+, Firefox, Chrome, Opera, Safari
-                        xmlhttp=new XMLHttpRequest();
-                  } else {  // code for IE6, IE5
-                        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-                  }
-                  xmlhttp.onreadystatechange=function() {
-                        if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-                          document.getElementById("livesearch").innerHTML=xmlhttp.responseText;
-                          document.getElementById("livesearch").style.border="1px solid #A5ACB2";
-                        }
-                  }
-                  xmlhttp.open("GET","livesearch.php?q="+str,true);
-                  xmlhttp.send();*/
-                }
-				
 				
                 /**
                  * @brief Egyedi azonosító generátor
@@ -168,8 +138,95 @@
                         this.recipient_arr=new Array();
                         this.parent = parent;
                         this.lastrecipienttype = 'to';
+                        this.url;
+                        this.ajaxData = {};
                 }
 
+                /**
+                 * @brief Email input változáa esetén, az a fv ajaxos hívással 
+                 * megjeleíti az az alternatívákat
+                 * 
+                 * @param {type} event
+                 * 
+                 * @returns Nothing
+                 */
+                recipientholder.prototype.liveSearch = function(event) {
+                  var id = $(event.target).parent().data('id');
+                  var livesearch_div = $('#' + id);
+                  if (event.target.value.length===0) {
+                        livesearch_div.html('');
+                        livesearch_div.css('border', '0px');
+                        return;
+                  }
+                  
+                  this.liveSearchAjaxSettings(id);
+             
+                /*    
+                  xmlhttp.onreadystatechange=function() {
+                        if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+                          document.getElementById("livesearch").innerHTML=xmlhttp.responseText;
+                          document.getElementById("livesearch").style.border="1px solid #A5ACB2";
+                        }
+                  }
+                  xmlhttp.open("GET","livesearch.php?q="+str,true);
+                  xmlhttp.send();*/
+                };
+
+                recipientholder.prototype.liveSearchAjaxSettings = function(id){
+                    var thispoi = this;
+                    thispoi.ajaxData = {
+                        "elementId" : id,
+                        "action" : "liveSearch",
+                        "pattern": $('#' + id + '_emailinput').val()
+                    };
+                    thispoi.url = '/simplemailer/livesearch.php';
+                    
+                    thispoi.callAjax();
+                };
+                
+                /**
+                 * A liveSearch eredményét megjelenítő fv
+                 * 
+                 * @see recipientholder.prototype.liveSearch
+                 * 
+                 * @param [in] response Az ajax hívás response-ja JSON
+                 * 
+                 * @returns {undefined}
+                 */
+                recipientholder.prototype.showLiveSearchResult = function(response){
+                    alert(response.valasz);
+                };
+                
+                /**
+                 * @brief Általános ajax hívást megvalósító fv.
+                 * 
+                 */
+                recipientholder.prototype.callAjax = function(){
+                    var thispoi = this;
+                    $.ajax({
+                     url: thispoi.url,
+                     method: 'post',
+                     async: false,
+                     data: thispoi.ajaxData  
+                    }).done(function(response){
+                     var responseJSON = $.parseJSON(response);
+                     switch(thispoi.ajaxData.action){
+                      case 'liveSearch' : {
+                       thispoi.showLiveSearchResult(responseJSON);
+                       break;
+                      }
+                      case 'getNews' : {
+                       thispoi.doNews(responseJSON);
+                       break;
+                      }   
+                      case 'login' : {
+                       thispoi.doLogin(responseJSON);
+                       break;
+                      }   
+                     }
+                    }); 
+                };
+                
                /**
                 * Címett adati tárolja le egy tömbben
                 * 
@@ -335,7 +392,7 @@
                         /*Ha enter-t nyomtunk, nem üres az inputfield és az utolsó emailinputon állunk - új címzettet hozlétre
 						* Ha BACKSPACE-t nyomtunk és üres az input - prevent default máskülönben és delete dialog vagy livesearch
 						*/
-                        $(".emailinput").on('keypress', function(event){
+                        $(".emailinput").on('keyup', function(event){
                             /*email input ertekkiaras az recipient_arr tombbe*/
                             var type = 'address';
                             var uuid = $(this).parent().data("id");
@@ -360,8 +417,8 @@
                             if(event.which === 13 && inputvalue !== '' && lastitem === true){
                                 thispoi.newRecipient();
                             } else {
-								showResult(event);
-							}
+				thispoi.liveSearch(event);
+                            }
                         });
 						
 						
@@ -496,14 +553,14 @@
                                 cont+='<option value="cc">'+this.str_res_obj[g_lang]['carbonCopy']+'</option>';
                                 cont+='<option value="bcc">'+this.str_res_obj[g_lang]['blindCarbonCopy']+'</option>';
                                 cont+='</select>';
-                                cont+='<input type="email" class="emailinput dovalidate ui-widget ui-widget-input ui-corner-all"/>';
+                                cont+='<input type="email" id="'+id+'_emailinput" class="emailinput dovalidate ui-widget ui-widget-input ui-corner-all"/>';
                                 if(deletablep === true){
                                     cont+='<button class="deleterecipient" type="button" href="#">'+this.str_res_obj[g_lang]['delete']+'</button>';
                                 }
-                                cont+='<div id="'+id+'emailinput_info">';
+                                cont+='<div id="'+id+'_emailinput_info">';
                                 cont+='teszt';
                                 cont+='</div>';
-								cont+='<div >';
+				cont+='<div id="'+id+'_emailinput_liveserch">';
                                 cont+='resppppppp';
                                 cont+='</div>';
                                 //cont+=item['id']+','+item['type']+','+item['address']; 
