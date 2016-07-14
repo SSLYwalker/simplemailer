@@ -54,7 +54,8 @@
                                                     "support" : "Segítségnyújtás",
                                                     "installation" : "Telepítés",
                                                     "activity" : "Tevékenység",
-                                                    "recipient_delete_dialog" : "Címzett törlése",
+                                                    "recipient_delete_dialog" : "Valóban törölni szeretné a címzettet?",
+                                                    "recipient_delete_dialog_title" : "Címzett törlése",
                                                     "yes" : "Igen",
                                                     "no" : "Nem"
                                                 },
@@ -84,7 +85,8 @@
                                                     "support" : "Support",
                                                     "installation" : "Installation",
                                                     "activity" : "Activity",
-                                                    "recipient_delete_dialog" : "Recipient delete",
+                                                    "recipient_delete_dialog" : "Do you want to delete the recipient?",
+                                                    "recipient_delete_dialog_title" : "Delete recipient",
                                                     "yes" : "Yes",
                                                     "no" : "No"
                                                 }
@@ -344,11 +346,11 @@
 				/**
                 *  @brief Törlési párbeszédablak
                 */
-                recipientholder.prototype.getdialogsstr = function(){
+                recipientholder.prototype.getDialogsStr = function(){
                     var cont = '';
                     
-                    cont+='<div id="'+this.contenthtmltag+'_recipient_delete_dialog" title="'+this.str_res_obj[g_lang]['recipient_delete_dialog']+'">';
-                    cont+='<p>Valóban törlni szeretné a címzettet?</p>';
+                    cont+='<div id="'+this.contenthtmltag+'_recipient_delete_dialog" title="'+this.str_res_obj[g_lang]['recipient_delete_dialog_title']+'">';
+                    cont+='<p>' + this.str_res_obj[g_lang]['recipient_delete_dialog'] + '</p>';
                     cont+='</div>';
                     
                     return cont;
@@ -358,7 +360,7 @@
                         var cont='';
                         cont+='<div id="'+this.contenthtmltag+'_recipientholderdiv" class="recipientholderdiv">';
                         cont+='<button type="button" id="newRecipient" href="#">'+this.str_res_obj[g_lang]['newRecipient']+'</button>';
-                        cont+=this.getdialogsstr();
+                        cont+=this.getDialogsStr();
                         cont+='</div>';
                         
                          $('#'+this.contenthtmltag).html(cont);
@@ -467,7 +469,7 @@
                         
                         /**Címzett eltávolítása dialógus*/
                         $(function() {
-							$('#'+thispoi.contenthtmltag+'_recipient_delete_dialog').dialog({
+                                    $('#'+thispoi.contenthtmltag+'_recipient_delete_dialog').dialog({
                                     autoOpen: false,
                                     modal: true,
                                     resizable: false,
@@ -483,7 +485,7 @@
                                         },
                                     buttons: [
                                         {
-                                        text: thispoi.str_res_obj['yes'],
+                                        text: thispoi.str_res_obj[g_lang]['yes'],
                                         click: function() {
                                                     var target = $(".markedfordelete");
                                                     var uuid = target.data("id");
@@ -495,7 +497,7 @@
                                                 }
                                         },
                                         {
-                                        text: thispoi.str_res_obj['no'],
+                                        text: thispoi.str_res_obj[g_lang]['no'],
                                         click: function() {
                                                     $(".markedfordelete").removeClass("markedfordelete");
                                                     $(this).dialog("close");
