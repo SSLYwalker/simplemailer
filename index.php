@@ -17,7 +17,7 @@
                  * 
                  * @type String
                  */
-                var g_lang = 'eng';
+                var g_lang = 'hun';
                 
                 
         	var mui;
