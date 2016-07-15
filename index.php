@@ -153,15 +153,15 @@
                  * @returns Nothing
                  */
                 recipientholder.prototype.liveSearch = function(event) {
-                  var id = $(event.target).parent().data('id');
-                  var livesearch_div = $('#' + id);
+                  var thispoi = this;
+                  var liveSearchDivParentId = $(event.target).parent().data('id');
+                  var liveSearchDiv = $('#' + liveSearchDivParentId + '_emailinput_livesearch');
                   if (event.target.value.length===0) {
-                        livesearch_div.html('');
-                        livesearch_div.css('border', '0px');
+                        thispoi.clearLiveSearchDiv(liveSearchDiv);
                         return;
                   }
                   
-                  this.liveSearchAjaxSettings(id);
+                  this.liveSearchAjaxSettings(liveSearchDivParentId);
              
                 /*    
                   xmlhttp.onreadystatechange=function() {
@@ -173,7 +173,22 @@
                   xmlhttp.open("GET","livesearch.php?q="+str,true);
                   xmlhttp.send();*/
                 };
-
+                
+                /*jquery elemként jön a paraméter*/
+                recipientholder.prototype.clearLiveSearchDiv = function(liveSearchDiv){
+                    liveSearchDiv.html('');
+                    liveSearchDiv.css('border', '0px');
+                }
+                
+                recipientholder.prototype.liveSearchResultItemOnClick = function(parentId, emailAddress){
+                    var thispoi = this;
+                    alert('hopp');
+                    var emailInput = $('#' + $parentId +  '_emailinput');
+                    console.log(emailInput);
+                    emailInput.val('\'' + $emailAddress + '\'').focus(); 
+                    this.clearLiveSearchDiv();
+                };
+                
                 recipientholder.prototype.liveSearchAjaxSettings = function(id){
                     var thispoi = this;
                     thispoi.ajaxData = {
@@ -195,8 +210,14 @@
                  * 
                  * @returns {undefined}
                  */
-                recipientholder.prototype.showLiveSearchResult = function(response){
-                    alert(response.valasz);
+                recipientholder.prototype.showLiveSearchResult = function(response, container_parent_id){
+                    var container = $('#' + container_parent_id + '_emailinput_livesearch');
+                    container.html(response);
+                    
+                    $('.liveSearchItem').on('click', function(event){
+                        var recipientHolderDiv = event;
+                        console.log(recipientHolderDiv);
+                    });
                 };
                 
                 /**
@@ -211,10 +232,11 @@
                      async: false,
                      data: thispoi.ajaxData  
                     }).done(function(response){
-                     var responseJSON = $.parseJSON(response);
+                     //var responseJSON = $.parseJSON(response);
+                     var responseJSON = response;
                      switch(thispoi.ajaxData.action){
                       case 'liveSearch' : {
-                       thispoi.showLiveSearchResult(responseJSON);
+                       thispoi.showLiveSearchResult(responseJSON, thispoi.ajaxData.elementId);
                        break;
                       }
                       case 'getNews' : {
@@ -412,7 +434,7 @@
 									alert('#'+thispoi.contenthtmltag+'_recipient_delete_dialog');
 									$('#'+thispoi.contenthtmltag+'_recipient_delete_dialog').dialog('open');
 									/*kivédi, hogy a BACKSPACE hatására visszanavigáljon az előző oldalra*/
-									event.preventDefault();
+									event.defaultPrevented;
 								}
 							}
 							
@@ -463,10 +485,11 @@
                         };*/
 
                         
-                        $(".emailinput").change(function(){
+                        $('.emailinput').on('change', function(){
                             thispoi.validate();
                         });
                         
+
                         /**Címzett eltávolítása dialógus*/
                         $(function() {
                                     $('#'+thispoi.contenthtmltag+'_recipient_delete_dialog').dialog({
@@ -479,7 +502,7 @@
                                     open: function(){ 
                                             $(".recipient_delete_dialog").find("button").on("keydown", function(){
                                                 if(event.which === 8){
-                                                    event.preventDefault();
+                                                    event.defaultPrevented;
                                                 }
                                             });
                                         },
@@ -562,7 +585,7 @@
                                 cont+='<div id="'+id+'_emailinput_info">';
                                 cont+='teszt';
                                 cont+='</div>';
-				cont+='<div id="'+id+'_emailinput_liveserch">';
+				cont+='<div id="'+id+'_emailinput_livesearch" class="livesearch_div">';
                                 cont+='resppppppp';
                                 cont+='</div>';
                                 //cont+=item['id']+','+item['type']+','+item['address']; 

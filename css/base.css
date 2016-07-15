@@ -60,3 +60,11 @@ select {
 	width: 100%;
 	background: url(/simplemailer/images/sm1.png) no-repeat;
 }
+
+.livesearch_div {
+    margin: 0px;
+}
+
+.liveSearchItem{
+    background-color: blue;
+}
