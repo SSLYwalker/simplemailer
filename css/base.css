@@ -66,5 +66,6 @@ select {
 }
 
 .liveSearchItem{
-    background-color: blue;
+    background-color: greenyellow;
+    margin: 0px;
 }

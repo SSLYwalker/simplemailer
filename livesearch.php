@@ -23,7 +23,7 @@ if (($handle = fopen("mailcimtar.csv", "r")) !== FALSE) {
         if($row >= 2 && strlen($pattern) >= 2) { //Az első sorba a fejlécek vannak
             $email_address = $data[4];
             if (strpos($email_address, $pattern) !== false) {
-                echo ('<p data-containerId=' .$container_id. '" class="liveSearchItem">' . $email_address . "</p><br/>");
+                echo ('<p data-containerId="' .$container_id. '" class="liveSearchItem">' . $email_address . "</p><br/>");
             }
         }
         $row++;

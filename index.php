@@ -183,9 +183,9 @@
                 recipientholder.prototype.liveSearchResultItemOnClick = function(parentId, emailAddress){
                     var thispoi = this;
                     alert('hopp');
-                    var emailInput = $('#' + $parentId +  '_emailinput');
+                    var emailInput = $('#' + parentId +  '_emailinput');
                     console.log(emailInput);
-                    emailInput.val('\'' + $emailAddress + '\'').focus(); 
+                    emailInput.val('\'' + emailAddress + '\'').focus(); 
                     this.clearLiveSearchDiv();
                 };
                 
@@ -214,10 +214,7 @@
                     var container = $('#' + container_parent_id + '_emailinput_livesearch');
                     container.html(response);
                     
-                    $('.liveSearchItem').on('click', function(event){
-                        var recipientHolderDiv = event;
-                        console.log(recipientHolderDiv);
-                    });
+                   
                 };
                 
                 /**
@@ -237,6 +234,10 @@
                      switch(thispoi.ajaxData.action){
                       case 'liveSearch' : {
                        thispoi.showLiveSearchResult(responseJSON, thispoi.ajaxData.elementId);
+                       $('.liveSearchItem').on('click', function(event){
+                       var recipientHolderDiv = $('#' + $(event.target).data('containerid'));
+                       console.log(recipientHolderDiv);
+                    });
                        break;
                       }
                       case 'getNews' : {
