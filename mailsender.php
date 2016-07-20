@@ -17,8 +17,8 @@ require '/phpmailer/PHPMailerAutoload.php';
 //Create a new PHPMailer instance
 $mail = new PHPMailer();
 
-//Custome name
-$customerName = $array[1][0]->customername;
+//Customer name
+$customer_name = $array[1][0]->customerName;
 
 //Recognize the template language
 switch ($array[1][0]->lang) {
@@ -104,7 +104,7 @@ $template = str_replace(
             $activity),
         $template_text);
 //subject
-$subject = $customerName . ' - ' . $product . ' program ' . $activity . ' ' . $subj_status;
+$subject = $customer_name . ' - ' . $product . ' program ' . $activity . ' ' . $subj_status;
 
 /*$target_file = fopen('./contents.html', 'w');
 fputs($target_file, $template);
@@ -175,7 +175,7 @@ $mail->AltBody = 'This is a plain-text message body';
 if (!$mail->send()) {
     echo "Nem sikerült elküldeni a levelet: " . $mail->ErrorInfo;
 } else {
-    echo "Üzenet elküldve!";
+    echo '<a href="' . filter_input(INPUT_SERVER, 'HTTP_REFERER') . '">Üzenet elküldve. Vissza a küldő oldalra';
 }
 
 
