@@ -1,12 +1,12 @@
 <html>
     <head>
         <link rel="icon" href="images/sm_ico.png">
-        <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/humanity/jquery-ui.css">	
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/humanity/jquery-ui.css">	
         <link rel="stylesheet" href="css/jquery.datetimepicker.css">
         <link rel="stylesheet" href="css/jquery-te-1.4.0.css">
 	<link rel="stylesheet" href="css/base.css">
-        <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-        <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
         <script src="scripts/jquery.datetimepicker.js"></script>
         <script src="scripts/jquery-te-1.4.0.min.js"></script>
         <meta charset="UTF-8">
@@ -491,15 +491,30 @@
                         
 
                         /**Címzett eltávolítása dialógus*/
+                        var delDialog = $( '#'+thisPoi.contentHtmlTag+'_recipient_delete_dialog' ).dialog({
+                                            autoOpen: false,
+                                            height: 400,
+                                            width: 350,
+                                            modal: true,
+                                            buttons: {
+                                              "Create an account": function(){},
+                                              Cancel: function() {
+                                                delDialog.dialog( "close" );
+                                              }
+                                            },
+                                            close: function() {
+
+                                            }
+                                          });
                         $(function() {
-                                    $('#'+thisPoi.contentHtmlTag+'_recipient_delete_dialog').dialog({
+                                 /*   $('#'+thisPoi.contentHtmlTag+'_recipient_delete_dialog').dialog({
                                     autoOpen: false,
                                     modal: true,
                                     resizable: false,
                                     dialogClass: "recipient-delete-dialog",
                                     /*megnyitáskor az igen gombra kerül a fókusz és ebben az esetben
-                                     *  a BACKSPACE megnyomását védeni kell mert másképp a böngésző betölti az előző oldalt*/
-                                    open: function(){ 
+                                       a BACKSPACE megnyomását védeni kell mert másképp a böngésző betölti az előző oldalt*/
+                                    /*open: function(){ 
                                             $(".recipient-delete-dialog").find("button").on("keydown", function(){
                                                 if(event.which === 8){
                                                     event.defaultPrevented;
@@ -527,14 +542,15 @@
                                                 }
                                             }
                                     ]
-						});
+						});*/
                         
-							$('button.delete-recipient').on('click', function() {
-									$(this).parent().addClass("marked-for-delete");
-									$(".email-input").focus();
-									$('#'+thisPoi.contentHtmlTag+'_recipient_delete_dialog').dialog("open");
-									
-							});
+                                    $('button.delete-recipient').on('click', function() {
+                                                    $(this).parent().addClass("marked-for-delete");
+                                                    $(".email-input").focus();
+                                                    //$('#'+thisPoi.contentHtmlTag+'_recipient_delete_dialog').dialog("open");
+                                                    delDialog.dialog("open");
+
+                                    });
                         
 						});
 
